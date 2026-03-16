@@ -6,40 +6,33 @@ import com.solvd.bookingcompany.domain.*;
 import com.solvd.bookingcompany.exceptions.*;
 import com.solvd.bookingcompany.payment.CreditCardPayment;
 import com.solvd.bookingcompany.payment.Payment;
+import com.solvd.bookingcompany.service.BookingCompany;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import com.solvd.bookingcompany.service.BookingCompany;
-import org.apache.logging.log4j.LogManager;
 
 public class Main {
-    public static final org.apache.logging.log4j.Logger LOGGER =
-            LogManager.getLogger(BookingCompany.class);
+
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
 
-        ConnectionPool pool = new ConnectionPool(
-                "jdbc:mysql://localhost:1234/bookingdb",
-                "root",
-                "password",
-                3
-        );
-
-        LOGGER.info("Connection pool loaded.");
-        LOGGER.info("Available connections: {}", pool.getAvailableConnections());
+        ConnectionPool pool = ConnectionPool.getInstance();
 
         Connection connection = pool.getConnection();
+        LOGGER.info("Available connections: {}", pool.getAvailableConnections());
 
         if (connection != null) {
-            LOGGER.info("Using connection from pool...");
+            LOGGER.info("Connection taken from pool");
             pool.releaseConnection(connection);
         }
 
-        LOGGER.info("Connections after release: {}", pool.getAvailableConnections());
-
-        pool.closeAllConnections();
-        LOGGER.info("All connections closed.");
+        BookingCompany company = new BookingCompany();
 
         Apartment apartment = new Apartment();
         apartment.setTitle("Nice apartment");
@@ -53,9 +46,13 @@ public class Main {
         availabilities.add(availability);
         apartment.setAvailabilities(availabilities);
 
+        company.addApartment(apartment);
+
         Customer customer = new Customer();
         customer.setFirstName("Jack");
         customer.setLastName("Smith");
+
+        company.addCustomer(customer);
 
         LinkedList<Booking> bookingHistory = customer.getBookingHistory();
 
@@ -63,18 +60,30 @@ public class Main {
         LocalDate checkOut = LocalDate.of(2026, 3, 3);
         double totalPrice = 300.0;
 
+        List<Apartment> availableApartments =
+                company.findAvailableApartments(checkIn, checkOut);
+
+        LOGGER.info("Found {} available apartments", availableApartments.size());
+
+        availableApartments.forEach(a ->
+                LOGGER.info("Available apartment: {}", a.getTitle()));
+
         Booking booking = null;
-        Long bookingId = 1L;
 
         try {
-            booking = new Booking(bookingId, apartment, checkIn, checkOut, totalPrice);
+            booking = company.createBooking(
+                    1L,
+                    apartment,
+                    customer,
+                    checkIn,
+                    checkOut,
+                    totalPrice
+            );
+
             LOGGER.info("Booking created: {}", booking);
 
-            bookingHistory.save(booking);
-            LOGGER.info("Booking added to customer's history. Size: {}", bookingHistory.size());
-
         } catch (InvalidBookingDatesException e) {
-            e.printStackTrace();
+            LOGGER.error("Invalid booking dates", e);
         }
 
         try {
@@ -83,38 +92,51 @@ public class Main {
             }
             LOGGER.info("Apartment is available for booking.");
         } catch (ApartmentNotAvailableException e) {
-            e.printStackTrace();
+            LOGGER.error("Apartment not available", e);
         }
 
-        CreditCard creditCard = new CreditCard("1234567812345678",
-                "JACK SMITH", "12/27", "123");
+        CreditCard creditCard = new CreditCard(
+                "1234567812345678",
+                "JACK SMITH",
+                "12/27",
+                "123"
+        );
 
         if (booking != null) {
-            Long paymentId = 1L;
+
             try {
-                Payment payment = new CreditCardPayment(paymentId, booking, totalPrice, creditCard);
+
+                Payment payment = new CreditCardPayment(
+                        1L,
+                        booking,
+                        totalPrice,
+                        creditCard
+                );
+
                 LOGGER.info("Payment created: {}", payment);
 
                 payment.pay();
+
                 LOGGER.info("Payment successful");
+
 
                 Invoice invoice = new Invoice(1L, booking, totalPrice);
                 InvoiceRecord record = invoice.toRecord();
 
                 LOGGER.info("Invoice record created: {}", record);
 
-            } catch (BookingNotFoundException e) {
-                e.printStackTrace();
-            } catch (InvalidPaymentAmountException e) {
-                e.printStackTrace();
-            } catch (PaymentFailedException e) {
-                e.printStackTrace();
+            } catch (BookingNotFoundException
+                     | InvalidPaymentAmountException
+                     | PaymentFailedException e) {
+
+                LOGGER.error("Payment error", e);
             }
         }
 
         LOGGER.info("First booking from history: {}", bookingHistory.get(0));
 
         bookingHistory.remove(0);
+
         LOGGER.info("Booking removed. Size now: {}", bookingHistory.size());
 
         LOGGER.info("Available dates:");
@@ -130,5 +152,6 @@ public class Main {
                 .sorted((a1, a2) -> a1.getFrom().compareTo(a2.getFrom()))
                 .forEach(a ->
                         LOGGER.info("From: {} To: {}", a.getFrom(), a.getTo()));
+
     }
 }

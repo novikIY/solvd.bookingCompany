@@ -1,10 +1,13 @@
 package com.solvd.bookingcompany.service;
 
 import com.solvd.bookingcompany.domain.Apartment;
+import com.solvd.bookingcompany.domain.Availability;
 import com.solvd.bookingcompany.domain.Booking;
 import com.solvd.bookingcompany.domain.Customer;
+import com.solvd.bookingcompany.exceptions.InvalidBookingDatesException;
 import org.apache.logging.log4j.LogManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,32 +23,39 @@ public class BookingCompany {
         apartments.add(apartment);
     }
 
-    public void registerCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         customers.add(customer);
     }
 
-    public List<Apartment> searchAvailableApartments() {
-        List<Apartment> available = new ArrayList<>();
+    public List<Apartment> findAvailableApartments(LocalDate from, LocalDate to) {
+
+        List<Apartment> result = new ArrayList<>();
 
         for (Apartment apartment : apartments) {
-            if (apartment.isAvailable()) {
-                available.add(apartment);
+
+            for (Availability availability : apartment.getAvailabilities()) {
+
+                if (availability.isAvailable()
+                        && !availability.getFrom().isAfter(from)
+                        && !availability.getTo().isBefore(to)) {
+
+                    result.add(apartment);
+                    break;
+                }
             }
         }
-
-        return available;
+        return result;
     }
 
     public Booking createBooking(Long id, Apartment apartment, Customer customer,
-                                 java.time.LocalDate checkIn,
-                                 java.time.LocalDate checkOut,
-                                 double price) throws Exception {
+                                 LocalDate checkIn, LocalDate checkOut,
+                                 double price) throws InvalidBookingDatesException {
 
         Booking booking = new Booking(id, apartment, checkIn, checkOut, price);
 
         bookings.add(booking);
 
-        customer.saveBooking(booking);
+        customer.getBookingHistory().save(booking);
 
         return booking;
     }
