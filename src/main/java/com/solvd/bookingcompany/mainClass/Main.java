@@ -6,14 +6,16 @@ import com.solvd.bookingcompany.domain.*;
 import com.solvd.bookingcompany.exceptions.*;
 import com.solvd.bookingcompany.payment.CreditCardPayment;
 import com.solvd.bookingcompany.payment.Payment;
-import static com.solvd.bookingcompany.database.Logger.logger;
-
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.solvd.bookingcompany.service.BookingCompany;
+import org.apache.logging.log4j.LogManager;
 
 public class Main {
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(BookingCompany.class);
 
     public static void main(String[] args) {
 
@@ -24,20 +26,20 @@ public class Main {
                 3
         );
 
-        logger.info("Connection pool loaded.");
-        logger.info("Available connections: {}", pool.getAvailableConnections());
+        LOGGER.info("Connection pool loaded.");
+        LOGGER.info("Available connections: {}", pool.getAvailableConnections());
 
         Connection connection = pool.getConnection();
 
         if (connection != null) {
-            logger.info("Using connection from pool...");
+            LOGGER.info("Using connection from pool...");
             pool.releaseConnection(connection);
         }
 
-        logger.info("Connections after release: {}", pool.getAvailableConnections());
+        LOGGER.info("Connections after release: {}", pool.getAvailableConnections());
 
         pool.closeAllConnections();
-        logger.info("All connections closed.");
+        LOGGER.info("All connections closed.");
 
         Apartment apartment = new Apartment();
         apartment.setTitle("Nice apartment");
@@ -66,10 +68,10 @@ public class Main {
 
         try {
             booking = new Booking(bookingId, apartment, checkIn, checkOut, totalPrice);
-            logger.info("Booking created: {}", booking);
+            LOGGER.info("Booking created: {}", booking);
 
             bookingHistory.save(booking);
-            logger.info("Booking added to customer's history. Size: {}", bookingHistory.size());
+            LOGGER.info("Booking added to customer's history. Size: {}", bookingHistory.size());
 
         } catch (InvalidBookingDatesException e) {
             e.printStackTrace();
@@ -79,7 +81,7 @@ public class Main {
             if (booking != null && !apartment.isAvailable()) {
                 throw new ApartmentNotAvailableException("Apartment is not available");
             }
-            logger.info("Apartment is available for booking.");
+            LOGGER.info("Apartment is available for booking.");
         } catch (ApartmentNotAvailableException e) {
             e.printStackTrace();
         }
@@ -91,15 +93,15 @@ public class Main {
             Long paymentId = 1L;
             try {
                 Payment payment = new CreditCardPayment(paymentId, booking, totalPrice, creditCard);
-                logger.info("Payment created: {}", payment);
+                LOGGER.info("Payment created: {}", payment);
 
                 payment.pay();
-                logger.info("Payment successful");
+                LOGGER.info("Payment successful");
 
                 Invoice invoice = new Invoice(1L, booking, totalPrice);
                 InvoiceRecord record = invoice.toRecord();
 
-                logger.info("Invoice record created: {}", record);
+                LOGGER.info("Invoice record created: {}", record);
 
             } catch (BookingNotFoundException e) {
                 e.printStackTrace();
@@ -110,23 +112,23 @@ public class Main {
             }
         }
 
-        logger.info("First booking from history: {}", bookingHistory.get(0));
+        LOGGER.info("First booking from history: {}", bookingHistory.get(0));
 
         bookingHistory.remove(0);
-        logger.info("Booking removed. Size now: {}", bookingHistory.size());
+        LOGGER.info("Booking removed. Size now: {}", bookingHistory.size());
 
-        logger.info("Available dates:");
+        LOGGER.info("Available dates:");
 
         availabilities.stream()
                 .filter(a -> a.isAvailable())
                 .forEach(a ->
-                        logger.info("From: {} To: {}", a.getFrom(), a.getTo()));
+                        LOGGER.info("From: {} To: {}", a.getFrom(), a.getTo()));
 
-        logger.info("Availabilities sorted by start date:");
+        LOGGER.info("Availabilities sorted by start date:");
 
         availabilities.stream()
                 .sorted((a1, a2) -> a1.getFrom().compareTo(a2.getFrom()))
                 .forEach(a ->
-                        logger.info("From: {} To: {}", a.getFrom(), a.getTo()));
+                        LOGGER.info("From: {} To: {}", a.getFrom(), a.getTo()));
     }
 }

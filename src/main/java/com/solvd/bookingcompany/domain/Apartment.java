@@ -3,6 +3,7 @@ package com.solvd.bookingcompany.domain;
 import com.solvd.bookingcompany.enums.ApartmentType;
 import com.solvd.bookingcompany.interfaces.Searchable;
 import com.solvd.bookingcompany.search.SearchCriteria;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,6 +22,8 @@ public class Apartment extends BaseEntity implements Searchable {
     private List<Photo> photos = new ArrayList<>();
     private Queue<Customer> waitingList = new LinkedList<>();
     private ApartmentType type;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Apartment.class);
 
     public Apartment() {
     }

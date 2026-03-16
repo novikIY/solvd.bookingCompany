@@ -2,6 +2,7 @@ package com.solvd.bookingcompany.domain;
 
 import java.util.*;
 import com.solvd.bookingcompany.collection.LinkedList;
+import org.apache.logging.log4j.LogManager;
 
 public class Customer extends User {
 
@@ -9,6 +10,8 @@ public class Customer extends User {
     private Set<Booking> bookings = new HashSet<>();
     private Map<Long, Booking> bookingsById = new HashMap<>();
     private final LinkedList<Booking> bookingHistory = new LinkedList<>();
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Customer.class);
 
     public Customer() {
     }

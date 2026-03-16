@@ -1,11 +1,16 @@
 package com.solvd.bookingcompany.domain;
 
+import com.solvd.bookingcompany.database.ConnectionPool;
+import org.apache.logging.log4j.LogManager;
+
 public class Address {
 
     private String country;
     private String city;
     private String street;
     private String zipCode;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Address.class);
 
     public Address(String country, String city, String street, String zipCode) {
         this.country = country;

@@ -8,6 +8,7 @@ import com.solvd.bookingcompany.exceptions.BookingNotFoundException;
 import com.solvd.bookingcompany.exceptions.InvalidPaymentAmountException;
 import com.solvd.bookingcompany.exceptions.PaymentFailedException;
 import com.solvd.bookingcompany.interfaces.Payable;
+import org.apache.logging.log4j.LogManager;
 
 public abstract class Payment extends BaseEntity implements Payable {
 
@@ -15,6 +16,8 @@ public abstract class Payment extends BaseEntity implements Payable {
     private Double amount;
     private PaymentStatus status;
     private PaymentMethod method;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Payment.class);
 
     public Payment(Booking booking, Double amount) {
     }

@@ -1,8 +1,12 @@
 package com.solvd.bookingcompany.domain;
 
+import org.apache.logging.log4j.LogManager;
+
 public class Host extends User {
 
     private Double rating;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Host.class);
 
     public Host() {
     }

@@ -1,6 +1,7 @@
 package com.solvd.bookingcompany.domain;
 
 import com.solvd.bookingcompany.payment.TransactionRecord;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ public final class CreditCard {
     private final String expiryDate;
     private final String cvv;
     private final List<TransactionRecord> transactions = new ArrayList<>();
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(CreditCard.class);
 
     public CreditCard(String cardNumber, String cardHolder, String expiryDate, String cvv) {
         this.cardNumber = cardNumber;

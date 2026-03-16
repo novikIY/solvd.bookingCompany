@@ -1,10 +1,14 @@
 package com.solvd.bookingcompany.domain;
 
+import org.apache.logging.log4j.LogManager;
+
 public abstract class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
     private String email;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(User.class);
 
     public User() {
     }

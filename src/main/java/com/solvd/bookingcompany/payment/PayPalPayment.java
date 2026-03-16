@@ -7,12 +7,14 @@ import com.solvd.bookingcompany.enums.PaymentStatus;
 import com.solvd.bookingcompany.exceptions.BookingNotFoundException;
 import com.solvd.bookingcompany.exceptions.InvalidPaymentAmountException;
 import com.solvd.bookingcompany.exceptions.PaymentFailedException;
+import org.apache.logging.log4j.LogManager;
 
-import static com.solvd.bookingcompany.database.Logger.logger;
 
 public class PayPalPayment extends Payment {
 
     private PayPalAccount payPalAccount;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(PayPalPayment.class);
 
     public PayPalPayment(Long id, Booking booking, Double amount, PayPalAccount payPalAccount)
             throws BookingNotFoundException, InvalidPaymentAmountException {
@@ -30,7 +32,7 @@ public class PayPalPayment extends Payment {
 
     @Override
     public void pay() throws PaymentFailedException {
-        logger.info("Paying with PayPal: {}", payPalAccount.getEmail());
+        LOGGER.info("Paying with PayPal: {}", payPalAccount.getEmail());
 
         boolean success = true;
 

@@ -2,6 +2,7 @@ package com.solvd.bookingcompany.domain;
 
 import com.solvd.bookingcompany.interfaces.Searchable;
 import com.solvd.bookingcompany.search.SearchCriteria;
+import org.apache.logging.log4j.LogManager;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,8 @@ public final class Availability extends BaseEntity implements Searchable {
     private LocalDate from;
     private LocalDate to;
     private Boolean available;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Availability.class);
 
     public Availability() {
     }

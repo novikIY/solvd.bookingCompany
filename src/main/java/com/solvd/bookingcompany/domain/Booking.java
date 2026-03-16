@@ -2,6 +2,7 @@ package com.solvd.bookingcompany.domain;
 
 import com.solvd.bookingcompany.enums.BookingStatus;
 import com.solvd.bookingcompany.exceptions.InvalidBookingDatesException;
+import org.apache.logging.log4j.LogManager;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -14,6 +15,8 @@ public class Booking extends BaseEntity {
     private LocalDate checkOut;
     private BookingStatus status;
     private Double totalPrice;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Booking.class);
 
     public Booking() {
     }

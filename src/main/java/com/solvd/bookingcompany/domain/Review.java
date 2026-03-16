@@ -1,10 +1,14 @@
 package com.solvd.bookingcompany.domain;
 
+import org.apache.logging.log4j.LogManager;
+
 public class Review extends BaseEntity {
 
     private Integer rating;
     private String comment;
     private Booking booking;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Review.class);
 
     public Review() {
     }

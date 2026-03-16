@@ -1,0 +1,16 @@
+2026-03-16 17:23:30.054 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
+java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
+	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:30) [classes/:?]
+	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:22) [classes/:?]
+2026-03-16 17:23:30.059 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Connection pool loaded.
+2026-03-16 17:23:30.068 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Available connections: 0
+2026-03-16 17:23:57.300 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
+java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
+	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:30) [classes/:?]
+	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:22) [classes/:?]
+2026-03-16 17:23:57.312 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Connection pool loaded.
+2026-03-16 17:23:57.319 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Available connections: 0

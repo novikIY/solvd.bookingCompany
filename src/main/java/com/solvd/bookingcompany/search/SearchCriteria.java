@@ -1,11 +1,15 @@
 package com.solvd.bookingcompany.search;
 
+import org.apache.logging.log4j.LogManager;
+
 import java.time.LocalDate;
 
 public class SearchCriteria {
 
     private LocalDate checkIn;
     private LocalDate checkOut;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(SearchCriteria.class);
 
     public static final int MIN_STAY_DAYS;
     public static final int MAX_STAY_DAYS;

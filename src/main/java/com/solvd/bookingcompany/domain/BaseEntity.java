@@ -1,6 +1,7 @@
 package com.solvd.bookingcompany.domain;
 
 import com.solvd.bookingcompany.interfaces.Identifiable;
+import org.apache.logging.log4j.LogManager;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,6 +11,8 @@ public abstract class BaseEntity implements Identifiable {
     private Long id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(BaseEntity.class);
 
     protected BaseEntity() {
         this.createdAt = LocalDateTime.now();

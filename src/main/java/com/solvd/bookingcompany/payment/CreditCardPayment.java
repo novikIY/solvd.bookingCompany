@@ -7,12 +7,13 @@ import com.solvd.bookingcompany.enums.PaymentStatus;
 import com.solvd.bookingcompany.exceptions.BookingNotFoundException;
 import com.solvd.bookingcompany.exceptions.InvalidPaymentAmountException;
 import com.solvd.bookingcompany.exceptions.PaymentFailedException;
-
-import static com.solvd.bookingcompany.database.Logger.logger;
+import org.apache.logging.log4j.LogManager;
 
 public class CreditCardPayment extends Payment {
 
     private CreditCard creditCard;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(CreditCardPayment.class);
 
     public CreditCardPayment(Booking booking, Double amount, CreditCard creditCard) {
         super(booking, amount);
@@ -36,7 +37,7 @@ public class CreditCardPayment extends Payment {
 
     @Override
     public void pay() throws PaymentFailedException {
-        logger.info("Paying with Credit Card: {}", creditCard.getMaskedNumber());
+        LOGGER.info("Paying with Credit Card: {}", creditCard.getMaskedNumber());
 
         boolean success = true;
 

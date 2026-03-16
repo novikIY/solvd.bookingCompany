@@ -2,6 +2,7 @@ package com.solvd.bookingcompany.domain;
 
 import com.solvd.bookingcompany.enums.InvoiceStatus;
 import com.solvd.bookingcompany.payment.Payment;
+import org.apache.logging.log4j.LogManager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class Invoice extends BaseEntity {
     private BigDecimal totalAmount;
     private List<Payment> payments = new ArrayList<>();
     private InvoiceStatus status;
+    public static final org.apache.logging.log4j.Logger LOGGER =
+            LogManager.getLogger(Invoice.class);
 
     public Invoice(long id, Booking booking, double totalPrice) {
     }
