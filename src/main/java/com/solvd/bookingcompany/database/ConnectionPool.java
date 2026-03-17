@@ -1,37 +1,28 @@
 package com.solvd.bookingcompany.database;
 
 import org.apache.logging.log4j.LogManager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConnectionPool {
 
     private static ConnectionPool instance;
-    private final BlockingQueue<Connection> pool;
+    private final BlockingQueue<MyConnection> pool;
     private static final int MAX_CONNECTIONS = 5;
 
-    private final String url = "jdbc:mysql://localhost:1234/bookingdb";
-    private final String user = "root";
-    private final String password = "password";
-    public static final org.apache.logging.log4j.Logger LOGGER =
+    private static final Logger LOGGER =
             LogManager.getLogger(ConnectionPool.class);
 
     private ConnectionPool() {
         pool = new LinkedBlockingQueue<>(MAX_CONNECTIONS);
 
-        try {
-            for (int i = 0; i < MAX_CONNECTIONS; i++) {
-                Connection connection = DriverManager.getConnection(url, user, password);
-                pool.add(connection);
-            }
-            LOGGER.info("Connection pool created with {} connections", MAX_CONNECTIONS);
-
-        } catch (SQLException e) {
-            LOGGER.error("Error creating connections", e);
+        for (int i = 0; i < MAX_CONNECTIONS; i++) {
+            pool.add(new MyConnection());
         }
+
+        LOGGER.info("Connection pool created with {} connections", MAX_CONNECTIONS);
     }
 
     public static synchronized ConnectionPool getInstance() {
@@ -41,7 +32,7 @@ public class ConnectionPool {
         return instance;
     }
 
-    public Connection getConnection() {
+    public MyConnection getConnection() {
         try {
             LOGGER.info("Connection requested from pool");
             return pool.take();
@@ -51,7 +42,7 @@ public class ConnectionPool {
         }
     }
 
-    public void releaseConnection(Connection connection) {
+    public void releaseConnection(MyConnection connection) {
         if (connection != null) {
             pool.offer(connection);
             LOGGER.info("Connection returned to pool");
@@ -60,17 +51,5 @@ public class ConnectionPool {
 
     public int getAvailableConnections() {
         return pool.size();
-    }
-
-    public void closeAllConnections() {
-        for (Connection connection : pool) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                LOGGER.error("Error closing connection", e);
-            }
-        }
-        pool.clear();
-        LOGGER.info("All connections closed");
     }
 }

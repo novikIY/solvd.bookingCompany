@@ -1,40 +1,162 @@
-2026-03-16 17:23:30.054 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
-java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:30) [classes/:?]
-	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:22) [classes/:?]
-2026-03-16 17:23:30.059 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Connection pool loaded.
-2026-03-16 17:23:30.068 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Available connections: 0
-2026-03-16 17:23:57.300 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
-java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:30) [classes/:?]
-	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:22) [classes/:?]
-2026-03-16 17:23:57.312 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Connection pool loaded.
-2026-03-16 17:23:57.319 [main] INFO  com.solvd.bookingcompany.service.BookingCompany - Available connections: 0
-2026-03-16 17:49:00.157 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
-java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:30) [classes/:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.getInstance(ConnectionPool.java:42) [classes/:?]
-	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:22) [classes/:?]
-2026-03-16 17:49:00.162 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
-2026-03-16 21:34:13.986 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
-java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:27) [classes/:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.getInstance(ConnectionPool.java:39) [classes/:?]
-	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:25) [classes/:?]
-2026-03-16 21:34:13.992 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
-2026-03-16 21:49:05.285 [main] ERROR com.solvd.bookingcompany.database.ConnectionPool - Error creating connections
-java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:1234/bookingdb
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:638) ~[java.sql:?]
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199) ~[java.sql:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.<init>(ConnectionPool.java:27) [classes/:?]
-	at com.solvd.bookingcompany.database.ConnectionPool.getInstance(ConnectionPool.java:39) [classes/:?]
-	at com.solvd.bookingcompany.mainClass.Main.main(Main.java:25) [classes/:?]
-2026-03-16 21:49:05.305 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 15:40:32.451 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:40:32.452 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:40:32.452 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:40:32.452 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:40:32.452 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:40:32.453 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 15:40:32.453 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 15:40:32.453 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 15:40:32.453 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 15:40:32.453 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 15:40:32.456 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 15:40:32.456 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 15:40:32.458 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 15:40:32.460 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 15:40:32.460 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 15:40:32.460 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 15:40:32.465 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=null, bookingId=null, amount=0.0, status=null]
+2026-03-17 15:40:32.465 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 15:40:32.466 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 15:40:32.466 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 15:40:32.466 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 15:40:32.466 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 15:40:32.466 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - booking -> 1
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - system -> 1
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - java -> 3
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - world -> 1
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - test -> 1
+2026-03-17 15:40:32.472 [main] INFO  com.solvd.bookingcompany.mainClass.Main - hello -> 4
+2026-03-17 15:49:08.676 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:49:08.677 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:49:08.677 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:49:08.677 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:49:08.677 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 15:49:08.678 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 15:49:08.679 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 15:49:08.679 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 15:49:08.679 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 15:49:08.679 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 15:49:08.680 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 15:49:08.681 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 15:49:08.685 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 15:49:08.689 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 15:49:08.689 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 15:49:08.689 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 15:49:08.710 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=1, bookingId=1, amount=300.0, status=CREATED]
+2026-03-17 15:49:08.711 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 15:49:08.711 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 15:49:08.711 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 15:49:08.712 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 15:49:08.712 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 15:49:08.713 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 15:49:08.718 [main] INFO  com.solvd.bookingcompany.mainClass.Main - booking -> 1
+2026-03-17 15:49:08.718 [main] INFO  com.solvd.bookingcompany.mainClass.Main - system -> 1
+2026-03-17 15:49:08.718 [main] INFO  com.solvd.bookingcompany.mainClass.Main - java -> 3
+2026-03-17 15:49:08.718 [main] INFO  com.solvd.bookingcompany.mainClass.Main - world -> 1
+2026-03-17 15:49:08.719 [main] INFO  com.solvd.bookingcompany.mainClass.Main - test -> 1
+2026-03-17 15:49:08.719 [main] INFO  com.solvd.bookingcompany.mainClass.Main - hello -> 4
+2026-03-17 21:23:50.787 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:23:50.788 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:23:50.788 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:23:50.788 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:23:50.788 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:23:50.789 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 21:23:50.789 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 21:23:50.789 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 21:23:50.789 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 21:23:50.789 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 21:23:50.790 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 21:23:50.791 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 21:23:50.793 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:23:50.794 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 21:23:50.795 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 21:23:50.795 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 21:23:50.810 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=1, bookingId=1, amount=300.0, status=CREATED]
+2026-03-17 21:23:50.810 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:23:50.810 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 21:23:50.810 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 21:23:50.811 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:23:50.811 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 21:23:50.812 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - booking -> 1
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - system -> 1
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - java -> 3
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - world -> 1
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - test -> 1
+2026-03-17 21:23:50.817 [main] INFO  com.solvd.bookingcompany.mainClass.Main - hello -> 4
+2026-03-17 21:32:35.053 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:32:35.056 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:32:35.056 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:32:35.056 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:32:35.056 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:32:35.057 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 21:32:35.057 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 21:32:35.057 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 21:32:35.058 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 21:32:35.058 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 21:32:35.060 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 21:32:35.061 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 21:32:35.064 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:32:35.066 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 21:32:35.066 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 21:32:35.066 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 21:32:35.090 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=1, bookingId=1, amount=300.0, status=CREATED]
+2026-03-17 21:32:35.090 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:32:35.090 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 21:32:35.091 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 21:32:35.091 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:32:35.091 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 21:32:35.091 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:39:17.316 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:39:17.317 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:39:17.317 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:39:17.317 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:39:17.317 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:39:17.318 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 21:39:17.318 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 21:39:17.318 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 21:39:17.318 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 21:39:17.318 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 21:39:17.319 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 21:39:17.320 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 21:39:17.322 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:39:17.323 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 21:39:17.323 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 21:39:17.323 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=1, bookingId=1, amount=300.0, status=CREATED]
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:39:17.336 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 21:39:17.337 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:40:34.741 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:40:34.742 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:40:34.742 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:40:34.742 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:40:34.742 [main] INFO  com.solvd.bookingcompany.database.MyConnection - >>> Connection created!
+2026-03-17 21:40:34.742 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection pool created with 5 connections
+2026-03-17 21:40:34.743 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection requested from pool
+2026-03-17 21:40:34.743 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available connections: 4
+2026-03-17 21:40:34.743 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Connection taken from pool
+2026-03-17 21:40:34.743 [main] INFO  com.solvd.bookingcompany.database.ConnectionPool - Connection returned to pool
+2026-03-17 21:40:34.746 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Found 1 available apartments
+2026-03-17 21:40:34.746 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available apartment: Nice apartment
+2026-03-17 21:40:34.748 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking created: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:40:34.749 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment created: Payment{id=1, bookingId=1, amount=300.0, status=PENDING}
+2026-03-17 21:40:34.749 [main] INFO  com.solvd.bookingcompany.payment.CreditCardPayment - Paying with Credit Card: **** **** **** 5678
+2026-03-17 21:40:34.749 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Payment successful
+2026-03-17 21:40:34.762 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Invoice record created: InvoiceRecord[invoiceId=1, bookingId=1, amount=300.0, status=CREATED]
+2026-03-17 21:40:34.762 [main] INFO  com.solvd.bookingcompany.mainClass.Main - First booking from history: Booking{id=1, apartment=Nice apartment, checkIn=2026-03-02, checkOut=2026-03-03, status=CREATED, totalPrice=300.0}
+2026-03-17 21:40:34.762 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Booking removed. Size now: 0
+2026-03-17 21:40:34.763 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Available dates:
+2026-03-17 21:40:34.763 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:40:34.763 [main] INFO  com.solvd.bookingcompany.mainClass.Main - Availabilities sorted by start date:
+2026-03-17 21:40:34.763 [main] INFO  com.solvd.bookingcompany.mainClass.Main - From: 2026-03-01 To: 2026-03-10
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - booking -> 1
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - hello -> 4
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - java -> 3
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - system -> 1
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - test -> 1
+2026-03-17 21:40:34.771 [main] INFO  com.solvd.bookingcompany.mainClass.Main - world -> 1

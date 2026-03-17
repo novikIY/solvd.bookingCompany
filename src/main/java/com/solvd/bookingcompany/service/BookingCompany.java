@@ -4,6 +4,7 @@ import com.solvd.bookingcompany.domain.Apartment;
 import com.solvd.bookingcompany.domain.Availability;
 import com.solvd.bookingcompany.domain.Booking;
 import com.solvd.bookingcompany.domain.Customer;
+import com.solvd.bookingcompany.exceptions.ApartmentNotAvailableException;
 import com.solvd.bookingcompany.exceptions.InvalidBookingDatesException;
 import org.apache.logging.log4j.LogManager;
 
@@ -47,14 +48,17 @@ public class BookingCompany {
         return result;
     }
 
-    public Booking createBooking(Long id, Apartment apartment, Customer customer,
-                                 LocalDate checkIn, LocalDate checkOut,
-                                 double price) throws InvalidBookingDatesException {
+    public Booking createBooking(Long id, Apartment apartment, Customer customer, LocalDate checkIn,
+                                LocalDate checkOut, double totalPrice)
+            throws ApartmentNotAvailableException, InvalidBookingDatesException {
 
-        Booking booking = new Booking(id, apartment, checkIn, checkOut, price);
+        if (!apartment.isAvailable(checkIn, checkOut)) {
+            throw new ApartmentNotAvailableException("Apartment is not available");
+        }
+
+        Booking booking = new Booking(id, apartment, checkIn, checkOut, totalPrice);
 
         bookings.add(booking);
-
         customer.getBookingHistory().save(booking);
 
         return booking;

@@ -5,6 +5,7 @@ import com.solvd.bookingcompany.interfaces.Searchable;
 import com.solvd.bookingcompany.search.SearchCriteria;
 import org.apache.logging.log4j.LogManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -140,16 +141,12 @@ public class Apartment extends BaseEntity implements Searchable {
         return false;
     }
 
-    public boolean isAvailable() {
+    public boolean isAvailable(LocalDate checkIn, LocalDate checkOut) {
         if (availabilities == null || availabilities.isEmpty()) {
-            return true;
+            return false;
         }
 
-        for (Availability a : availabilities) {
-            if (a.isAvailable()) {
-                return false;
-            }
-        }
-        return true;
+        return availabilities.stream().anyMatch(a -> a.isAvailable() &&
+                                !checkIn.isBefore(a.getFrom()) && !checkOut.isAfter(a.getTo()));
     }
 }

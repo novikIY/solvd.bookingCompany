@@ -16,14 +16,11 @@ public class Invoice extends BaseEntity {
     public static final org.apache.logging.log4j.Logger LOGGER =
             LogManager.getLogger(Invoice.class);
 
-    public Invoice(long id, Booking booking, double totalPrice) {
-    }
-
     public Invoice(Long id, Booking booking, BigDecimal totalAmount) {
         super(id);
         this.booking = booking;
         this.totalAmount = totalAmount;
-        this.status = InvoiceStatus.UNPAID;
+        this.status = InvoiceStatus.CREATED;
     }
 
     public Invoice(Long id, Booking booking, BigDecimal totalAmount,

@@ -2,19 +2,22 @@ package com.solvd.bookingcompany.mainClass;
 
 import com.solvd.bookingcompany.collection.LinkedList;
 import com.solvd.bookingcompany.database.ConnectionPool;
+import com.solvd.bookingcompany.database.MyConnection;
 import com.solvd.bookingcompany.domain.*;
 import com.solvd.bookingcompany.exceptions.*;
 import com.solvd.bookingcompany.payment.CreditCardPayment;
 import com.solvd.bookingcompany.payment.Payment;
 import com.solvd.bookingcompany.service.BookingCompany;
 
+import com.solvd.bookingcompany.textparser.TextParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -24,7 +27,7 @@ public class Main {
 
         ConnectionPool pool = ConnectionPool.getInstance();
 
-        Connection connection = pool.getConnection();
+        MyConnection connection = pool.getConnection();
         LOGGER.info("Available connections: {}", pool.getAvailableConnections());
 
         if (connection != null) {
@@ -82,17 +85,8 @@ public class Main {
 
             LOGGER.info("Booking created: {}", booking);
 
-        } catch (InvalidBookingDatesException e) {
+        } catch (InvalidBookingDatesException | ApartmentNotAvailableException e) {
             LOGGER.error("Invalid booking dates", e);
-        }
-
-        try {
-            if (booking != null && !apartment.isAvailable()) {
-                throw new ApartmentNotAvailableException("Apartment is not available");
-            }
-            LOGGER.info("Apartment is available for booking.");
-        } catch (ApartmentNotAvailableException e) {
-            LOGGER.error("Apartment not available", e);
         }
 
         CreditCard creditCard = new CreditCard(
@@ -120,7 +114,7 @@ public class Main {
                 LOGGER.info("Payment successful");
 
 
-                Invoice invoice = new Invoice(1L, booking, totalPrice);
+                Invoice invoice = new Invoice(1L, booking, BigDecimal.valueOf(300.0));
                 InvoiceRecord record = invoice.toRecord();
 
                 LOGGER.info("Invoice record created: {}", record);
@@ -153,5 +147,14 @@ public class Main {
                 .forEach(a ->
                         LOGGER.info("From: {} To: {}", a.getFrom(), a.getTo()));
 
+
+        TextParser parser = new TextParser();
+
+        Map<String, Integer> result = parser.parseText("input.txt");
+
+        result.forEach((word, count) ->
+                LOGGER.info("{} -> {}", word, count));
+
+        parser.saveResult(result, "output.txt");
     }
 }

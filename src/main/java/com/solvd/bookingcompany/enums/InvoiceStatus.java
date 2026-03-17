@@ -1,5 +1,5 @@
 package com.solvd.bookingcompany.enums;
 
 public enum InvoiceStatus {
-    UNPAID, PAID
+    UNPAID, CREATED, PAID
 }
